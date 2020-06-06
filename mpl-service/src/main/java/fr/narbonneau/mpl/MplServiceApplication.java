@@ -1,4 +1,4 @@
-package fr.narbonneau.mpl.mplservice;
+package fr.narbonneau.mpl;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

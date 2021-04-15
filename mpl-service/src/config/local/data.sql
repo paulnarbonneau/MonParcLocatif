@@ -11,4 +11,4 @@ create table users (
 );
 
 insert into users (nom,prenom,email,adresse1,adresse2,codepostal,ville) 
-values ('Narbonneau','Paul','pnarbonn@gmail.com','17 allée de l''ile marante','','92700','colombes');
+values ('Narbonneau','Paul','pnarbonn@gmail.com','17 allée de l''ile marante','Appartement 225','92700','Colombes');

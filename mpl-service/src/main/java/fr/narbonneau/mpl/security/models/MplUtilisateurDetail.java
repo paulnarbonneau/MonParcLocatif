@@ -14,6 +14,11 @@ import org.springframework.security.core.userdetails.UserDetails;
  */
 public class MplUtilisateurDetail implements UserDetails {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1063990424401219415L;
+
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
 		// TODO Auto-generated method stub

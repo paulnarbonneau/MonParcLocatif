@@ -17,7 +17,7 @@ import javax.persistence.Table;
  *
  */
 @Entity
-@Table(name="mpl_utilisateur_info")
+@Table
 public class MplUtilisateur {
 	
 	@Id

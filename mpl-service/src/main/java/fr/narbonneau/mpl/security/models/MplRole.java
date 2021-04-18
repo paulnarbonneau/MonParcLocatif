@@ -7,11 +7,10 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="role")
+@Table
 public class MplRole {
 	
 	@Id
@@ -21,8 +20,8 @@ public class MplRole {
 	@Column
 	private String role;
 	
-	@ManyToOne
-	@JoinColumn(name="idRole")
+	@ManyToOne(optional = false)
+	@JoinColumn(name="idRole",insertable=false,updatable = false)
 	private MplRole roleParent;
 	
 	public MplRole() {}

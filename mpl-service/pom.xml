@@ -11,8 +11,9 @@
 	<artifactId>mpl-service</artifactId>
 	<name>mpl-service</name>
 	<description>Mon Parc Locatif partie service</description>
-	<properties>
-		<java.version>14</java.version>
+	<properties>		
+	    <maven.compiler.source>14</maven.compiler.source>
+	    <maven.compiler.target>14</maven.compiler.target>
 	</properties>
 	<dependencies>
 		<dependency>

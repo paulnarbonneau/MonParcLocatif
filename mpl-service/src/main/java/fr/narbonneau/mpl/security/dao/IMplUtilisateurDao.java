@@ -11,10 +11,18 @@ import fr.narbonneau.mpl.security.models.MplUtilisateur;
  */
 public interface IMplUtilisateurDao {
 	
-	MplUtilisateur findByUsername(String username);
+	MplUtilisateur findByIdentifiant(String username);
 
-	Boolean existsByUsername(String username);
+	Boolean existsByIdentifiant(String identifiant);
 
 	Boolean existsByEmail(String email);
+	
+	MplUtilisateur creer(MplUtilisateur user);
+	
+	boolean supprimer(long userId);
+	
+	boolean supprimer(MplUtilisateur user);
+	
+	MplUtilisateur mettreAJour(MplUtilisateur user);
 
 }

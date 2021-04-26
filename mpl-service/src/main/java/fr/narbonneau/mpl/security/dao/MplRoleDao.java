@@ -8,12 +8,15 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
+import org.springframework.stereotype.Repository;
+
 import fr.narbonneau.mpl.security.models.MplRole;
 
 /**
  * @author paulo
  *
  */
+@Repository
 public class MplRoleDao implements IMplRoleDao {
 	
 	@PersistenceContext

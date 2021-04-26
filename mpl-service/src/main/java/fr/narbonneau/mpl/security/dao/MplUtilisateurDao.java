@@ -5,6 +5,11 @@ package fr.narbonneau.mpl.security.dao;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.PersistenceException;
+import javax.persistence.TypedQuery;
+import javax.transaction.Transactional;
+
+import org.springframework.stereotype.Repository;
 
 import fr.narbonneau.mpl.security.models.MplUtilisateur;
 
@@ -12,25 +17,65 @@ import fr.narbonneau.mpl.security.models.MplUtilisateur;
  * @author paulo
  *
  */
+@Repository
 public class MplUtilisateurDao implements IMplUtilisateurDao {
 	
 	@PersistenceContext
     private EntityManager entityManager;
 
 	@Override
-	public MplUtilisateur findByUsername(String username) {
+	public MplUtilisateur findByIdentifiant(String username) {
 		
 		return entityManager.createQuery("from MplUtilisateur where identifiant=:username",MplUtilisateur.class ).getSingleResult();
 	}
 
 	@Override
-	public Boolean existsByUsername(String username) {
-		return entityManager.createQuery("from MplUtilisateur where identifiant=:username",MplUtilisateur.class ).getSingleResult() != null;
+	public Boolean existsByIdentifiant(String username) {
+		
+		TypedQuery<MplUtilisateur> query = entityManager.createQuery("from MplUtilisateur where identifiant=:username",MplUtilisateur.class );
+		query.setParameter("username", username);
+		try
+		{
+			return query.getSingleResult() != null;
+		}
+		catch(PersistenceException e)
+		{
+			return false;
+		}
+		
 	}
 
 	@Override
 	public Boolean existsByEmail(String email) {
 		return entityManager.createQuery("from MplUtilisateur where email=:email",MplUtilisateur.class ).getSingleResult() != null;
+	}
+
+	@Override
+	@Transactional
+	public MplUtilisateur creer(MplUtilisateur user) {
+		entityManager.persist(user);
+		return user;
+	}
+
+	@Override
+	@Transactional
+	public boolean supprimer(long userId) {
+		return entityManager.createQuery("delete from MplUtilisateur where id = :userId").executeUpdate() > 0;
+		
+	}
+
+	@Override
+	@Transactional
+	public boolean supprimer(MplUtilisateur user) {
+		return entityManager.createQuery("delete from MplUtilisateur where id = :user.id").executeUpdate() > 0;
+		
+	}
+
+	@Override
+	@Transactional
+	public MplUtilisateur mettreAJour(MplUtilisateur user) {
+		entityManager.merge(user);
+		return user;
 	}
 
 	

@@ -22,7 +22,7 @@ public class MplUtilisateur {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE)
-	private long idUtilisateur;
+	private long id;
 	
 	@Column(nullable = false, unique = true)
 	private String identifiant;
@@ -116,15 +116,15 @@ public class MplUtilisateur {
 	/**
 	 * @return the idUtilisateur
 	 */
-	public long getIdUtilisateur() {
-		return idUtilisateur;
+	public long getId() {
+		return id;
 	}
 
 	/**
 	 * @param idUtilisateur the idUtilisateur to set
 	 */
-	public void setIdUtilisateur(long idUtilisateur) {
-		this.idUtilisateur = idUtilisateur;
+	public void setId(long id) {
+		this.id = id;
 	}
 
 	/**

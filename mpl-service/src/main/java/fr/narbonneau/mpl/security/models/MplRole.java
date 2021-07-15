@@ -18,7 +18,7 @@ public class MplRole {
 	private long idRole;
 	
 	@Column
-	private String role;
+	private String libRole;
 	
 	@ManyToOne(optional = false)
 	@JoinColumn(name="idRole",insertable=false,updatable = false)
@@ -43,15 +43,15 @@ public class MplRole {
 	/**
 	 * @return the role
 	 */
-	public String getRole() {
-		return role;
+	public String getLibRole() {
+		return libRole;
 	}
 
 	/**
 	 * @param role the role to set
 	 */
-	public void setRole(String role) {
-		this.role = role;
+	public void setLibRole(String role) {
+		this.libRole = role;
 	}
 
 	/**

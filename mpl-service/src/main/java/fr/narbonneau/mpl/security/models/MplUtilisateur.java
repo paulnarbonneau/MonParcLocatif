@@ -18,11 +18,17 @@ import javax.persistence.Table;
  */
 @Entity
 @Table
-public class MplUtilisateur {
+public class MplUtilisateur  {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -1675702282223569850L;
+
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE)
-	private long id;
+	private long idUtilisateur;
 	
 	@Column(nullable = false, unique = true)
 	private String identifiant;
@@ -54,6 +60,19 @@ public class MplUtilisateur {
 	@OneToOne
 	@JoinColumn(name="idRole")
 	private MplRole role;
+	
+	@Column
+	private boolean compteNonExpire;
+	
+	@Column
+	private boolean compteActif;
+	
+	@Column
+	private boolean compteNonBloque;
+	
+	@Column
+	private boolean identifiantNonExpire;
+	
 
 	
 
@@ -116,15 +135,15 @@ public class MplUtilisateur {
 	/**
 	 * @return the idUtilisateur
 	 */
-	public long getId() {
-		return id;
+	public long getIdUtilisateur() {
+		return idUtilisateur;
 	}
 
 	/**
 	 * @param idUtilisateur the idUtilisateur to set
 	 */
 	public void setId(long id) {
-		this.id = id;
+		this.idUtilisateur= id;
 	}
 
 	/**
@@ -209,6 +228,69 @@ public class MplUtilisateur {
 	 */
 	public void setVille(String ville) {
 		this.ville = ville;
+	}
+
+	/**
+	 * @return the compteNonExpire
+	 */
+	public boolean isCompteNonExpire() {
+		return compteNonExpire;
+	}
+
+	/**
+	 * @param compteNonExpire the compteNonExpire to set
+	 */
+	public void setCompteNonExpire(boolean compteNonExpire) {
+		this.compteNonExpire = compteNonExpire;
+	}
+
+	/**
+	 * @return the compteActif
+	 */
+	public boolean isCompteActif() {
+		return compteActif;
+	}
+
+	/**
+	 * @param compteActif the compteActif to set
+	 */
+	public void setCompteActif(boolean compteActif) {
+		this.compteActif = compteActif;
+	}
+
+	/**
+	 * @return the compteNonBloque
+	 */
+	public boolean isCompteNonBloque() {
+		return compteNonBloque;
+	}
+
+	/**
+	 * @param compteNonBloque the compteNonBloque to set
+	 */
+	public void setCompteNonBloque(boolean compteNonBloque) {
+		this.compteNonBloque = compteNonBloque;
+	}
+
+	/**
+	 * @return the identifiantNonExpire
+	 */
+	public boolean isIdentifiantNonExpire() {
+		return identifiantNonExpire;
+	}
+
+	/**
+	 * @param identifiantNonExpire the identifiantNonExpire to set
+	 */
+	public void setIdentifiantNonExpire(boolean identifiantNonExpire) {
+		this.identifiantNonExpire = identifiantNonExpire;
+	}
+
+	/**
+	 * @param idUtilisateur the idUtilisateur to set
+	 */
+	public void setIdUtilisateur(long idUtilisateur) {
+		this.idUtilisateur = idUtilisateur;
 	}
 	
 	

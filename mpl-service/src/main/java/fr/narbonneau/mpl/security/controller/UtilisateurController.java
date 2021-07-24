@@ -3,83 +3,32 @@
  */
 package fr.narbonneau.mpl.security.controller;
 
-import javax.validation.Valid;
-
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpStatus;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-
-import fr.narbonneau.mpl.security.jwt.JWTFilter;
-import fr.narbonneau.mpl.security.jwt.TokenProvider;
-import fr.narbonneau.mpl.security.models.LoginForm;
+import fr.narbonneau.mpl.security.models.MplUtilisateur;
+import fr.narbonneau.mpl.utilisateur.service.MplUtilisateurService;
 
 /**
  * @author paulo
  *
  */
 @RestController
-@RequestMapping("/utilisateurs")
+@RequestMapping("/api/utilisateurs")
 public class UtilisateurController {
 	
 	
-	private TokenProvider tokenProvider;
+	@Autowired
+	private MplUtilisateurService mplUtilisateurService;
 	
-	private final AuthenticationManagerBuilder authenticationManagerBuilder;
-
-	 public UtilisateurController(TokenProvider tokenProvider, AuthenticationManagerBuilder authenticationManagerBuilder) {
-	        this.tokenProvider = tokenProvider;
-	        this.authenticationManagerBuilder = authenticationManagerBuilder;
+	 @PostMapping
+	    public ResponseEntity<MplUtilisateur> createUser (@RequestBody MplUtilisateur userCreateRequest) {
+	        mplUtilisateurService.creerUtilisateur(userCreateRequest);
+	        return ResponseEntity.ok().build();
 	    }
-	
-	@PostMapping("login")
-    public ResponseEntity<JWTToken> login(@Valid @RequestBody LoginForm loginForm) {
-		
-		
-		
-		UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(
-				loginForm.getUsername(),
-				loginForm.getPassword()
-	        );
-		
-		
-		Authentication authentication = authenticationManagerBuilder.getObject().authenticate(authenticationToken);
-        SecurityContextHolder.getContext().setAuthentication(authentication);
-        String jwt = tokenProvider.createToken(authentication, loginForm.isRememberMe());
-        HttpHeaders httpHeaders = new HttpHeaders();
-        httpHeaders.add(JWTFilter.AUTHORIZATION_HEADER, "Bearer " + jwt);
-        return new ResponseEntity<>(new JWTToken(jwt), httpHeaders, HttpStatus.OK);
-    }
 
-	
-	/**
-     * Object to return as body in JWT Authentication.
-     */
-    static class JWTToken {
-
-        private String idToken;
-
-        JWTToken(String idToken) {
-            this.idToken = idToken;
-        }
-
-        @JsonProperty("id_token")
-        String getIdToken() {
-            return idToken;
-        }
-
-        void setIdToken(String idToken) {
-            this.idToken = idToken;
-        }
-    }
-	
 }

@@ -3,7 +3,7 @@
  */
 package fr.narbonneau.mpl.utilisateur.service;
 
-import java.util.Optional;
+import javax.persistence.EntityNotFoundException;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -21,9 +21,15 @@ public class MplUtilisateurService {
 	@Autowired
 	private MplUtilisateurDao mplUtilisateurDao;
 	
-	public Optional<MplUtilisateur> chargerUtilisateurAvecIdentifiant(String id)
+	public MplUtilisateur chargerUtilisateurAvecIdentifiant(String identifiant)
 	{
-		return null;
+		return mplUtilisateurDao.recupererParIdentifiant(identifiant).orElseThrow(EntityNotFoundException::new);
+	}
+
+	public MplUtilisateur creerUtilisateur(MplUtilisateur mplUtilisateur) {
+		
+		return mplUtilisateurDao.creer(mplUtilisateur);
+		
 	}
 
 }

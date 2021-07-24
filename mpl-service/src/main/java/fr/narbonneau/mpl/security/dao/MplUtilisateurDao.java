@@ -3,12 +3,19 @@
  */
 package fr.narbonneau.mpl.security.dao;
 
+import java.util.List;
+import java.util.Optional;
+
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.PersistenceException;
 import javax.persistence.TypedQuery;
 import javax.transaction.Transactional;
 
+import org.springframework.data.domain.Example;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Repository;
 
 import fr.narbonneau.mpl.security.models.MplUtilisateur;
@@ -18,15 +25,16 @@ import fr.narbonneau.mpl.security.models.MplUtilisateur;
  *
  */
 @Repository
-public class MplUtilisateurDao implements IMplUtilisateurDao {
+public class MplUtilisateurDao  implements IMplUtilisateurDao {
 	
 	@PersistenceContext
     private EntityManager entityManager;
 
 	@Override
-	public MplUtilisateur findByIdentifiant(String username) {
+	public Optional<MplUtilisateur> recupererParIdentifiant(String username) {
 		
-		return entityManager.createQuery("from MplUtilisateur where identifiant=:username",MplUtilisateur.class ).getSingleResult();
+		MplUtilisateur mpl = entityManager.createQuery("from MplUtilisateur where identifiant=:username",MplUtilisateur.class ).getSingleResult();
+		return Optional.ofNullable(mpl);
 	}
 
 	@Override

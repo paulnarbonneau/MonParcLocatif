@@ -3,6 +3,8 @@
  */
 package fr.narbonneau.mpl.security.dao;
 
+import java.util.Optional;
+
 import fr.narbonneau.mpl.security.models.MplUtilisateur;
 
 /**
@@ -11,7 +13,7 @@ import fr.narbonneau.mpl.security.models.MplUtilisateur;
  */
 public interface IMplUtilisateurDao {
 	
-	MplUtilisateur findByIdentifiant(String username);
+	Optional<MplUtilisateur> recupererParIdentifiant(String identifiant);
 
 	Boolean existsByIdentifiant(String identifiant);
 

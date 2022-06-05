@@ -125,5 +125,8 @@
         }
       }
     }},
-  "defaultProject": "mpl-ui"
+  "defaultProject": "mpl-ui",
+  "cli": {
+    "analytics": false
+  }
 }

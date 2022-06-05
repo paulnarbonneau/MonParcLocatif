@@ -1,6 +1,6 @@
 package fr.narbonneau.mpl.security.dao;
 
-import org.junit.Assert;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -19,7 +19,7 @@ public class MplUtilisateurDaoTest {
 	@Test
 	public void testExistsByIdentifiant()
 	{
-		Assert.assertTrue(mplUtilisateurDao.existsByIdentifiant("paulo"));
+		Assertions.assertTrue(mplUtilisateurDao.existsByIdentifiant("paulo"));
 	}
 	
 	
@@ -27,7 +27,7 @@ public class MplUtilisateurDaoTest {
 	public void testAjout()
 	{
 		
-		Assert.assertFalse(mplUtilisateurDao.existsByIdentifiant("2"));
+		Assertions.assertFalse(mplUtilisateurDao.existsByIdentifiant("2"));
 		
 		
 		MplUtilisateur user = new MplUtilisateur();
@@ -49,7 +49,7 @@ public class MplUtilisateurDaoTest {
 		
 		mplUtilisateurDao.creer(user);
 		
-		Assert.assertTrue(mplUtilisateurDao.existsByIdentifiant("007"));
+		Assertions.assertTrue(mplUtilisateurDao.existsByIdentifiant("007"));
 		
 	}
 

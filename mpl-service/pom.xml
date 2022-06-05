@@ -12,8 +12,8 @@
 	<name>mpl-service</name>
 	<description>Mon Parc Locatif partie service</description>
 	<properties>
-		<maven.compiler.source>14</maven.compiler.source>
-		<maven.compiler.target>14</maven.compiler.target>
+		<maven.compiler.source>17</maven.compiler.source>
+		<maven.compiler.target>17</maven.compiler.target>
 		<jjwt.version>0.11.2</jjwt.version>
 	</properties>
 	<dependencies>
